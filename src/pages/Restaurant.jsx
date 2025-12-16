@@ -35,7 +35,7 @@ const Restaurant = () => {
           deliveryFee: 0,
           minimumOrder: 299,
           description: 'Authentic Italian pizzas made with fresh ingredients',
-          image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt69VdP5o8YBDMPIgyU48n9gLnndfcpwe62g&s'
+          image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop&auto=format'
         },
         {
           _id: '2',
@@ -46,7 +46,7 @@ const Restaurant = () => {
           deliveryFee: 40,
           minimumOrder: 199,
           description: 'Gourmet burgers and loaded fries',
-          image: 'https://static.wixstatic.com/media/9a1d3f_1d3fc69803b646bfb2d460a528cbb6c4~mv2.png'
+          image: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&h=300&fit=crop&auto=format'
         },
         {
           _id: '3',
@@ -57,7 +57,7 @@ const Restaurant = () => {
           deliveryFee: 50,
           minimumOrder: 349,
           description: 'Authentic Indian cuisine with aromatic spices',
-          image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSnSNuUF5HWF0kws7CUBd3LUoSUXt-5Q6zyA&s'
+          image: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&h=300&fit=crop&auto=format'
         },
         {
           _id: '4',
@@ -68,7 +68,7 @@ const Restaurant = () => {
           deliveryFee: 30,
           minimumOrder: 149,
           description: 'Heavenly desserts and sweet delights',
-          image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStn3YAHOwGo5Ristkf0h_iGEgjTJgW_S3Qjw&s'
+          image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop&auto=format'
         },
         {
           _id: '5',
@@ -79,7 +79,7 @@ const Restaurant = () => {
           deliveryFee: 35,
           minimumOrder: 199,
           description: 'Fresh salads and healthy bowls',
-          image: 'https://content3.jdmagicbox.com/v2/comp/vijayawada/c8/0866px866.x866.240126204724.q3c8/catalogue/green-bowl-restaurant-bhavanipuram-vijayawada-restaurants-caUhrsqB2U.jpg'
+          image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop&auto=format'
         },
         {
           _id: '6',
@@ -90,17 +90,18 @@ const Restaurant = () => {
           deliveryFee: 45,
           minimumOrder: 249,
           description: 'Homestyle comfort food that warms your heart',
-          image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/41/4a/6c/caption.jpg?w=900&h=500&s=1'
+          image: 'https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&h=300&fit=crop&auto=format'
         }
       ];
       
       const mockRestaurant = mockRestaurants.find(r => r._id === id);
       if (mockRestaurant) {
         setRestaurant(mockRestaurant);
-        // Map food items to include _id for compatibility with FoodCard
+        // Map food items to ensure both id and _id exist for compatibility
         const mappedFoods = foodItems.slice(0, 15).map(food => ({
           ...food,
-          _id: food.id // Ensure _id exists for compatibility
+          _id: food.id, // Ensure _id exists for compatibility
+          id: food.id   // Ensure id exists for cart functionality
         }));
         setFoods(mappedFoods);
       }
@@ -141,7 +142,13 @@ const Restaurant = () => {
     <div className="restaurant-page">
       <div className="restaurant-header">
         <div className="restaurant-image">
-          <img src={restaurant.image || `https://via.placeholder.com/400x300/f59e0b/ffffff?text=${encodeURIComponent(restaurant.name || 'Restaurant')}`} alt={restaurant.name} />
+          <img 
+            src={`https://via.placeholder.com/400x300/f59e0b/ffffff?text=${encodeURIComponent(restaurant.name || 'Restaurant')}`} 
+            alt={restaurant.name} 
+            onError={(e) => {
+              e.target.src = `https://via.placeholder.com/400x300/f59e0b/ffffff?text=${encodeURIComponent(restaurant.name || 'Restaurant')}`;
+            }}
+          />
         </div>
         
         <div className="restaurant-details">

@@ -58,7 +58,7 @@ const Home = () => {
           deliveryFee: 0,
           minimumOrder: 299,
           description: 'Authentic Italian pizzas made with fresh ingredients',
-          image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt69VdP5o8YBDMPIgyU48n9gLnndfcpwe62g&s'
+          image: 'https://via.placeholder.com/400x300/FF6B35/FFFFFF?text=Pizza+Palace'
         },
         {
           _id: '2',
@@ -69,7 +69,7 @@ const Home = () => {
           deliveryFee: 40,
           minimumOrder: 199,
           description: 'Gourmet burgers and loaded fries',
-          image: 'https://static.wixstatic.com/media/9a1d3f_1d3fc69803b646bfb2d460a528cbb6c4~mv2.png'
+          image: 'https://via.placeholder.com/400x300/4ECDC4/FFFFFF?text=Burger+Hub'
         },
         {
           _id: '3',
@@ -80,7 +80,7 @@ const Home = () => {
           deliveryFee: 50,
           minimumOrder: 349,
           description: 'Authentic Indian cuisine with aromatic spices',
-          image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSnSNuUF5HWF0kws7CUBd3LUoSUXt-5Q6zyA&s'
+          image: 'https://via.placeholder.com/400x300/E23744/FFFFFF?text=Spice+Garden'
         },
         {
           _id: '4',
@@ -91,7 +91,7 @@ const Home = () => {
           deliveryFee: 30,
           minimumOrder: 149,
           description: 'Heavenly desserts and sweet delights',
-          image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStn3YAHOwGo5Ristkf0h_iGEgjTJgW_S3Qjw&s'
+          image: 'https://via.placeholder.com/400x300/F7DC6F/000000?text=Sweet+Treats'
         },
         {
           _id: '5',
@@ -102,7 +102,7 @@ const Home = () => {
           deliveryFee: 35,
           minimumOrder: 199,
           description: 'Fresh salads and healthy bowls',
-          image: 'https://content3.jdmagicbox.com/v2/comp/vijayawada/c8/0866px866.x866.240126204724.q3c8/catalogue/green-bowl-restaurant-bhavanipuram-vijayawada-restaurants-caUhrsqB2U.jpg'
+          image: 'https://via.placeholder.com/400x300/45B7D1/FFFFFF?text=Green+Bowl'
         },
         {
           _id: '6',
@@ -113,7 +113,7 @@ const Home = () => {
           deliveryFee: 45,
           minimumOrder: 249,
           description: 'Homestyle comfort food that warms your heart',
-          image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/41/4a/6c/caption.jpg?w=900&h=500&s=1'
+          image: 'https://via.placeholder.com/400x300/BB8FCE/FFFFFF?text=Comfort+Kitchen'
         }
       ];
       setRestaurants(mockRestaurants);
@@ -504,24 +504,7 @@ const Home = () => {
           </motion.section>
         )}
 
-        {/* Restaurants Section */}
-        {!searchQuery && (
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-white mb-2">Popular Restaurants</h2>
-              <p className="text-white/70">Delivering happiness to your doorstep</p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {restaurants.map((restaurant) => (
-                <RestaurantCard key={restaurant._id} restaurant={restaurant} />
-              ))}
-            </div>
-          </motion.section>
-        )}
+
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ const FoodCard = ({ food }) => {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   
-  const quantity = getItemQuantity(food.id);
+  const quantity = getItemQuantity(food.id || food._id);
 
   const handleAddToCart = async () => {
     if (!isAuthenticated) {
@@ -18,17 +18,17 @@ const FoodCard = ({ food }) => {
     }
     
     if (quantity > 0) {
-      await updateQuantity(food.id, quantity + 1);
+      await updateQuantity(food.id || food._id, quantity + 1);
     } else {
-      await addToCart(food.id, 1);
+      await addToCart(food.id || food._id, 1);
     }
   };
 
   const handleDecrease = async () => {
     if (quantity > 1) {
-      await updateQuantity(food.id, quantity - 1);
+      await updateQuantity(food.id || food._id, quantity - 1);
     } else {
-      await updateQuantity(food.id, 0);
+      await updateQuantity(food.id || food._id, 0);
     }
   };
 
