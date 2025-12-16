@@ -1,0 +1,210 @@
+.category-carousel {
+  padding: 30px 0;
+  background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+  border-bottom: 1px solid #e9ecef;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-carousel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(255, 107, 53, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(247, 147, 30, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.category-scroll {
+  display: flex;
+  gap: 20px;
+  padding: 0 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.category-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100px;
+  padding: 20px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--category-color, #ff6b35), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.category-item:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.category-item:hover::before {
+  opacity: 0.1;
+}
+
+.category-item.active {
+  background: var(--category-color, #ff6b35);
+  color: white;
+  border-color: var(--category-color, #ff6b35);
+  box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+  transform: translateY(-4px) scale(1.08);
+}
+
+.category-item.active::before {
+  opacity: 0.2;
+}
+
+.category-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.category-item:hover .category-icon {
+  transform: scale(1.2) rotate(5deg);
+}
+
+.category-item.active .category-icon {
+  transform: scale(1.15);
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+}
+
+.category-name {
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.category-item.active .category-name {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Scroll indicators */
+.category-carousel::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+  background: linear-gradient(to left, rgba(248, 249, 250, 0.8), transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.category-carousel::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+  background: linear-gradient(to right, rgba(248, 249, 250, 0.8), transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .category-carousel {
+    padding: 20px 0;
+  }
+  
+  .category-scroll {
+    padding: 0 16px;
+    gap: 16px;
+    justify-content: flex-start;
+  }
+  
+  .category-item {
+    min-width: 85px;
+    padding: 16px 12px;
+    border-radius: 16px;
+  }
+  
+  .category-icon {
+    font-size: 28px;
+    margin-bottom: 6px;
+  }
+  
+  .category-name {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-item {
+    min-width: 75px;
+    padding: 12px 8px;
+  }
+  
+  .category-icon {
+    font-size: 24px;
+  }
+  
+  .category-name {
+    font-size: 11px;
+  }
+}
+
+/* Animation for category items */
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.category-item {
+  animation: slideInFromTop 0.6s ease-out;
+}
+
+.category-item:nth-child(1) { animation-delay: 0.1s; }
+.category-item:nth-child(2) { animation-delay: 0.2s; }
+.category-item:nth-child(3) { animation-delay: 0.3s; }
+.category-item:nth-child(4) { animation-delay: 0.4s; }
+.category-item:nth-child(5) { animation-delay: 0.5s; }
+.category-item:nth-child(6) { animation-delay: 0.6s; }
