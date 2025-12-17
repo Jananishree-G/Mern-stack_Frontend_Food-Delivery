@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.NODE_ENV === 'production' 
-  ? 'https://backtend-ab6h.onrender.com/api'
-  : 'http://localhost:5002/api';
+const API_BASE_URL = 'https://backtend-ab6h.onrender.com/api';
 
 // Create axios instance
 const api = axios.create({
