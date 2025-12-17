@@ -401,6 +401,7 @@ const Home = () => {
             userOrders={[]} 
             selectedMood={selectedMood}
             onItemSelect={(item) => console.log('Selected item:', item)}
+            onAddToCart={handleAddToCart}
           />
         )}
 

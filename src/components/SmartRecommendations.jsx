@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, TrendingUp, Clock, Star } from 'lucide-react';
+import { Sparkles, TrendingUp, Clock, Star, Plus } from 'lucide-react';
 
-const SmartRecommendations = ({ userOrders = [], onItemSelect, selectedMood }) => {
+const SmartRecommendations = ({ userOrders = [], onItemSelect, selectedMood, onAddToCart }) => {
   const [recommendations, setRecommendations] = useState([]);
 
   // Mock recommendation data based on user behavior and mood
@@ -334,8 +334,7 @@ const SmartRecommendations = ({ userOrders = [], onItemSelect, selectedMood }) =
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
             whileHover={{ y: -5 }}
-            className="group cursor-pointer"
-            onClick={() => onItemSelect && onItemSelect(item)}
+            className="group"
           >
             <div className="relative overflow-hidden rounded-2xl glass backdrop-blur-md border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300">
               {/* Discount Badge */}
@@ -375,7 +374,7 @@ const SmartRecommendations = ({ userOrders = [], onItemSelect, selectedMood }) =
                 </div>
                 
                 {/* Price & Delivery */}
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
                     {item.discount ? (
                       <>
@@ -388,6 +387,20 @@ const SmartRecommendations = ({ userOrders = [], onItemSelect, selectedMood }) =
                   </div>
                   <span className="text-white/60 text-xs">{item.deliveryTime}</span>
                 </div>
+                
+                {/* Add to Cart Button */}
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onAddToCart && onAddToCart(item);
+                  }}
+                  className="w-full bg-gradient-to-r from-primary-500 to-secondary-500 text-white py-2 px-4 rounded-xl font-semibold text-sm hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                >
+                  <Plus className="w-4 h-4" />
+                  Add to Cart
+                </motion.button>
               </div>
             </div>
           </motion.div>
